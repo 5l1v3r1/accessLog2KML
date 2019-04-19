@@ -1,3 +1,5 @@
+# this is a real apache2 access.log file.
+# or atleast, a part of it.
 159.203.169.16 - - [19/Apr/2019:07:28:03 +0200] "GET / HTTP/1.0" 200 12000 "-" "masscan/1.0 (https://github.com/robertdavidgraham/masscan)"
 66.240.205.34 - - [19/Apr/2019:07:50:53 +0200] "Gh0st\xad" 400 0 "-" "-"
 201.93.218.249 - - [19/Apr/2019:08:19:52 +0200] "GET / HTTP/1.1" 200 14254 "-" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
