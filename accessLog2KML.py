@@ -44,4 +44,6 @@ def search_for_ips(log_file):
 
 search_for_ips(sys.argv[1])
 print("</Document>\n</kml>")
+top_countries = sorted(logins_by_country, key=logins_by_country.get, reverse=True)
 open('logins_by_country.json', 'w').write(json.dumps(logins_by_country, sort_keys=True, indent=4))
+open('top_countries.json', 'w').write(json.dumps(top_countries, sort_keys=True, indent=4))
