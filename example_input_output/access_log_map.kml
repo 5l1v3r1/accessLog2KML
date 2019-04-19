@@ -6,7 +6,7 @@
 <name>159.203.169.16</name>
 <description>Country:United States of America<br />City:Clifton<br />Region:New Jersey<br /></description>
 <Point>
-<coordinates>40.8326,-74.1307</coordinates>
+<coordinates>-74.1307,40.8326</coordinates>
 </Point>
 </Placemark>
 
@@ -14,7 +14,7 @@
 <name>66.240.205.34</name>
 <description>Country:United States of America<br />City:San Diego<br />Region:California<br /></description>
 <Point>
-<coordinates>32.8073,-117.1320</coordinates>
+<coordinates>-117.1320,32.8073</coordinates>
 </Point>
 </Placemark>
 
@@ -22,7 +22,7 @@
 <name>201.93.218.249</name>
 <description>Country:Brazil<br />City:São Paulo<br />Region:Sao Paulo<br /></description>
 <Point>
-<coordinates>-23.6300,-46.6322</coordinates>
+<coordinates>-46.6322,-23.6300</coordinates>
 </Point>
 </Placemark>
 
@@ -30,7 +30,7 @@
 <name>41.239.124.171</name>
 <description>Country:Egypt<br />City:Alexandria<br />Region:Alexandria<br /></description>
 <Point>
-<coordinates>31.2162,29.9529</coordinates>
+<coordinates>29.9529,31.2162</coordinates>
 </Point>
 </Placemark>
 
@@ -38,7 +38,7 @@
 <name>77.247.109.128</name>
 <description>Country:Netherlands<br />City:Meppel<br />Region:Drenthe<br /></description>
 <Point>
-<coordinates>52.6958,6.1944</coordinates>
+<coordinates>6.1944,52.6958</coordinates>
 </Point>
 </Placemark>
 
@@ -46,7 +46,7 @@
 <name>138.41.6.196</name>
 <description>Country:Italy<br />City:Rome<br />Region:Lazio<br /></description>
 <Point>
-<coordinates>41.8947,12.4839</coordinates>
+<coordinates>12.4839,41.8947</coordinates>
 </Point>
 </Placemark>
 
@@ -54,7 +54,7 @@
 <name>185.254.122.34</name>
 <description>Country:Russian Federation<br />City:<br />Region:<br /></description>
 <Point>
-<coordinates>55.7386,37.6068</coordinates>
+<coordinates>37.6068,55.7386</coordinates>
 </Point>
 </Placemark>
 
@@ -62,7 +62,7 @@
 <name>103.70.144.244</name>
 <description>Country:India<br />City:Bhadohi<br />Region:Uttar Pradesh<br /></description>
 <Point>
-<coordinates>25.4167,82.5667</coordinates>
+<coordinates>82.5667,25.4167</coordinates>
 </Point>
 </Placemark>
 
