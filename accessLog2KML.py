@@ -9,7 +9,6 @@ from operator import itemgetter
 from urllib.request import urlopen
 
 already_scanned_ips = []
-isGettingError = False
 
 logins_by_country = {}
 for iso_country_code in cc2_cn:
