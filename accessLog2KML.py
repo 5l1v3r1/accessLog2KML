@@ -4,6 +4,8 @@ import re
 import json
 import ipaddress
 import sys
+from collections import OrderedDict
+from operator import itemgetter
 from urllib.request import urlopen
 
 already_scanned_ips = []
@@ -44,6 +46,6 @@ def search_for_ips(log_file):
 
 search_for_ips(sys.argv[1])
 print("</Document>\n</kml>")
-top_countries = sorted(logins_by_country, key=logins_by_country.get, reverse=True)
-open('logins_by_country.json', 'w').write(json.dumps(logins_by_country, sort_keys=True, indent=4))
-open('top_countries.json', 'w').write(json.dumps(top_countries, sort_keys=True, indent=4))
+logins_by_country = OrderedDict(sorted(logins_by_country.items(), key=itemgetter(1), reverse=True))
+logins_by_country = json.dumps(logins_by_country, indent=4)
+open('logins_by_country.json', 'w').write(logins_by_country)
