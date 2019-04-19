@@ -16,7 +16,7 @@ for iso_country_code in cc2_cn:
 	country = cc2_cn[iso_country_code]
 	logins_by_country[country] = 0
 
-logins_by_isp = {}
+logins_by_asn = {}
 
 
 print("""\
@@ -30,10 +30,10 @@ def _add_ip(ip):
 	coords = ip_json['loc'].split(',')
 	country = cc2_cn[ip_json['country']]
 	isp = ip_json['org']
-	if not(isp in logins_by_isp.keys()):
-		logins_by_isp[isp] = 1
+	if not(isp in logins_by_asn.keys()):
+		logins_by_asn[isp] = 1
 	else:
-		logins_by_isp[isp] += 1
+		logins_by_asn[isp] += 1
 	logins_by_country[country] += 1
 	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
 
@@ -56,7 +56,7 @@ search_for_ips(sys.argv[1])
 print("</Document>\n</kml>")
 logins_by_country = OrderedDict(sorted(logins_by_country.items(), key=itemgetter(1), reverse=True))
 logins_by_country = json.dumps(logins_by_country, indent=4)
-logins_by_isp = OrderedDict(sorted(logins_by_isp.items(), key=itemgetter(1), reverse=True))
-logins_by_isp = json.dumps(logins_by_isp, indent=4)
+logins_by_asn = OrderedDict(sorted(logins_by_asn.items(), key=itemgetter(1), reverse=True))
+logins_by_asn = json.dumps(logins_by_asn, indent=4)
 open('logins_by_country.json', 'w').write(logins_by_country)
-open('logins_by_isp.json', 'w').write(logins_by_isp)
+open('logins_by_asn.json', 'w').write(logins_by_asn)
