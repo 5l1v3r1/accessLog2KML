@@ -29,11 +29,11 @@ def _add_ip(ip):
 	ip_json =  json.loads(urlopen("https://ipinfo.io/" + ip + "/json").read().decode())
 	coords = ip_json['loc'].split(',')
 	country = cc2_cn[ip_json['country']]
-	isp = ip_json['org']
+	asn = ip_json['org']
 	if not(isp in logins_by_asn.keys()):
-		logins_by_asn[isp] = 1
+		logins_by_asn[asn] = 1
 	else:
-		logins_by_asn[isp] += 1
+		logins_by_asn[asn] += 1
 	logins_by_country[country] += 1
 	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
 
