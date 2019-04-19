@@ -27,7 +27,7 @@ print("""\
 
 def _add_ip(ip):
 	ip_json =  json.loads(urlopen("https://ipinfo.io/" + ip + "/json").read().decode())
-	coords = ip_json['loc']
+	coords = ip_json['loc'].split(',')
 	country = cc2_cn[ip_json['country']]
 	isp = ip_json['org']
 	if not(isp in logins_by_isp.keys()):
@@ -35,7 +35,7 @@ def _add_ip(ip):
 	else:
 		logins_by_isp[isp] += 1
 	logins_by_country[country] += 1
-	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords + "</coordinates>\n</Point>\n</Placemark>\n")
+	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
 
 def add_ip(ip):
 	if ipaddress.ip_address(ip).is_private != True and not(ip in already_scanned_ips):
