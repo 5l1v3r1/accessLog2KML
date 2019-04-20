@@ -70,7 +70,7 @@ def search_for_ips(log_file):
 
 
 search_for_ips(sys.argv[1])
-# End the XML File
+# End the KML File
 print("</Document>\n</kml>")
 # Make the logins_by_country and logins_by_asn statistic
 # variables in order and turn them into json and then
