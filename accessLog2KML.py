@@ -8,8 +8,7 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib.request import urlopen
 
-# everytime the program finds a new ip, it checks if it's in already_scanned_ips,
-# if it's not, then add it to already_scanned_ips and add the IP to the KML file
+
 already_scanned_ips = []
 
 logins_by_country = {}
@@ -24,6 +23,12 @@ print("""\
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
 """)
+
+# this script will just print out the KML file contents as it's generating it,
+# it's on the user to send the output of a command to a file by adding " > map.kml"
+# after the command which runs the script.
+# the command that runs the script should look something like this:
+# python3 accessLog2KML.py /var/log/auth.log > auth_log_locations.kml
 
 def _add_ip(ip):
 	ip_json =  json.loads(urlopen("https://ipinfo.io/" + ip + "/json").read().decode())
@@ -40,6 +45,9 @@ def _add_ip(ip):
 	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
 
 def add_ip(ip):
+	# everytime the program finds a new ip, it checks if it's in already_scanned_ips and if is a LAN or localhost IP,
+	# if it's not, then it tries to add it to already_scanned_ips and add the IP to the KML file,
+	# if it fails to add it the KML file, then it prints out an XML comment with the error
 	if ipaddress.ip_address(ip).is_private != True and not(ip in already_scanned_ips):
 		try:
 			#print("FOUND IP:" + ip)
@@ -55,6 +63,7 @@ def search_for_ips(log_file):
 			add_ip(ip[0])
 
 search_for_ips(sys.argv[1])
+# End the XML File
 print("</Document>\n</kml>")
 # Make the logins_by_country and logins_by_asn statistic
 # variables in order and turn them into json and then
