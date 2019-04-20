@@ -1,3 +1,4 @@
+# this is the "input" file, the program takes this log file and turns it into a KML file to view in google maps or google earth
 # this is a real apache2 access.log file.
 # or atleast, a part of it.
 159.203.169.16 - - [19/Apr/2019:07:28:03 +0200] "GET / HTTP/1.0" 200 12000 "-" "masscan/1.0 (https://github.com/robertdavidgraham/masscan)"
