@@ -8,7 +8,6 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib.request import urlopen
 
-
 already_scanned_ips = []
 
 logins_by_country = {}
