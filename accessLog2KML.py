@@ -30,7 +30,7 @@ def _add_ip(ip):
 	coords = ip_json['loc'].split(',')
 	country = cc2_cn[ip_json['country']]
 	asn = ip_json['org']
-	if not(isp in logins_by_asn.keys()):
+	if not(asn in logins_by_asn.keys()):
 		logins_by_asn[asn] = 1
 	else:
 		logins_by_asn[asn] += 1
