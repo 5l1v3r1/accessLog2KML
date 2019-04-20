@@ -8,8 +8,9 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib.request import urlopen
 
+# everytime the program finds a new ip, it checks if it's in already_scanned_ips,
+# if it's not, then add it to already_scanned_ips and add the IP to the KML file
 already_scanned_ips = []
-isGettingError = False
 
 logins_by_country = {}
 for iso_country_code in cc2_cn:
@@ -17,7 +18,6 @@ for iso_country_code in cc2_cn:
 	logins_by_country[country] = 0
 
 logins_by_asn = {}
-
 
 print("""\
 <?xml version="1.0" encoding="UTF-8"?>
@@ -28,6 +28,8 @@ print("""\
 def _add_ip(ip):
 	ip_json =  json.loads(urlopen("https://ipinfo.io/" + ip + "/json").read().decode())
 	coords = ip_json['loc'].split(',')
+	# use coords[1] + ',' + coords[0] because in KML, coordinates are written in longitude,latitude format
+	# instead of the commonly accepted latitude,longitude format
 	country = cc2_cn[ip_json['country']]
 	asn = ip_json['org']
 	if not(asn in logins_by_asn.keys()):
@@ -54,6 +56,9 @@ def search_for_ips(log_file):
 
 search_for_ips(sys.argv[1])
 print("</Document>\n</kml>")
+# Make the logins_by_country and logins_by_asn statistic
+# variables in order and turn them into json and then
+# write them to a json file
 logins_by_country = OrderedDict(sorted(logins_by_country.items(), key=itemgetter(1), reverse=True))
 logins_by_country = json.dumps(logins_by_country, indent=4)
 logins_by_asn = OrderedDict(sorted(logins_by_asn.items(), key=itemgetter(1), reverse=True))
