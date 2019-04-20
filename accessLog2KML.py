@@ -12,6 +12,7 @@ from urllib.request import urlopen
 already_scanned_ips = []
 
 logins_by_country = {}
+
 for iso_country_code in cc2_cn:
 	country = cc2_cn[iso_country_code]
 	logins_by_country[country] = {'num_of_unique_ips':0, 'num_of_unique_asns':0, 'asns':{}}
@@ -43,6 +44,11 @@ def _add_ip(ip):
 		logins_by_country[country]['num_of_unique_asns'] += 1
 	else:
 		logins_by_country[country]['asns'][asn] += 1
+
+	if not(asn in login_by_asn.keys()):
+		login_by_asn[asn] = 1
+	else:
+		login_by_asn[asn] += 1
 
 	logins_by_country[country]['num_of_unique_ips'] += 1
 	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
