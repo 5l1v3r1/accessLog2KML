@@ -38,11 +38,11 @@ def _add_ip(ip):
 	country = cc2_cn[ip_json['country']]
 	asn = ip_json['org']
 
-	if not(asn in logins_by_country[country]['asns']):
+	if not(asn in logins_by_country[country]['asns'].keys()):
 		logins_by_country[country]['asns'][asn] = 1
 		logins_by_country[country]['num_of_unique_asns'] += 1
 	else:
-		logins_by_country[country]['asns']['asn'] += 1
+		logins_by_country[country]['asns'][asn] += 1
 
 	logins_by_country[country]['num_of_unique_ips'] += 1
 	print("<Placemark>\n<name>" + ip + "</name>\n<description>Country:" + country + "<br />City:" + ip_json['city'] + '<br />Region:' + 	ip_json['region'] +  "<br /></description>\n<Point>\n<coordinates>" + coords[1] + ',' + coords[0] + "</coordinates>\n</Point>\n</Placemark>\n")
@@ -53,7 +53,6 @@ def add_ip(ip):
 	# if it fails to add it the KML file, then it prints out an XML comment with the error
 	if ipaddress.ip_address(ip).is_private != True and not(ip in already_scanned_ips):
 		try:
-			#print("FOUND IP:" + ip)
 			already_scanned_ips.append(ip)
 			_add_ip(ip)
 		except Exception as e:
