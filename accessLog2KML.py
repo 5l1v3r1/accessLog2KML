@@ -62,7 +62,7 @@ def add_ip(ip):
 			already_scanned_ips.append(ip)
 			_add_ip(ip)
 		except Exception as e:
-			print("<!--- " + str(e) + " ---!>")
+			print("<!--- " + str(e) + " --->")
 def search_for_ips(log_file):
 	log_lines = open(log_file, 'r').read().split('\n')
 	for log_line in log_lines:
